@@ -2,15 +2,14 @@ package Database;
 
 public class DatabaseConfig {
     public static final String HOST = "localhost";
-    public static final String INSTANCE = ""; // Ví dụ: "SQLEXPRESS" nếu dùng SQL Server Express
+    public static final String INSTANCE = "SQLEXPRESS"; // Giữ nguyên thực thể SQLEXPRESS
     public static final String DB_NAME = "caro_game";
-    public static final String USERNAME = "sa";   // tên login SQL Server của bạn
-    public static final String PASSWORD = "your_password"; // mật khẩu của bạn
+    public static final String USERNAME = "sa";
+    public static final String PASSWORD = "123456"; // Mật khẩu sa bạn vừa kích hoạt ở Bước 3
 
-    // Nếu dùng SQL Server Express: jdbc:sqlserver://localhost\\SQLEXPRESS;...
-    // Nếu dùng SQL Server thường:  jdbc:sqlserver://localhost;...
+    // Thêm cấu hình cổng mạng ";port=1435" vào chuỗi URL kết nối
     public static final String URL =
-            "jdbc:sqlserver://localhost;databaseName=" + DB_NAME +
-                    ";encrypt=false;trustServerCertificate=true;" +
-                    "user=" + USERNAME + ";password=" + PASSWORD;
+            "jdbc:sqlserver://" + HOST + "\\" + INSTANCE + ";port=1435" +
+                    ";databaseName=" + DB_NAME +
+                    ";encrypt=true;trustServerCertificate=true;";
 }
