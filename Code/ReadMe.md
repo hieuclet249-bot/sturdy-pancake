@@ -3,7 +3,7 @@
 ## Công nghệ sử dụng
 - **Java 17** + **Swing** (giao diện desktop)
 - **TCP Socket** (Client-Server, multi-thread)
-- **MySQL** + **JDBC** (đăng ký/đăng nhập, lịch sử trận)
+- **SQL Sever** + **JDBC** (đăng ký/đăng nhập, lịch sử trận)
 - **Gson** (serialize/deserialize JSON packet)
 - **Maven** (quản lý dependency)
 

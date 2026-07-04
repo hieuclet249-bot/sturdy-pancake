@@ -24,7 +24,7 @@ public class MatchDAO {
 
     public List<Match> getMatchesByPlayer(String username) {
         List<Match> list = new ArrayList<>();
-        String sql = "SELECT * FROM matches WHERE player1 = ? OR player2 = ? ORDER BY played_at DESC LIMIT 20";
+        String sql = "SELECT TOP (20) * FROM matches WHERE player1 = ? OR player2 = ? ORDER BY played_at DESC";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
