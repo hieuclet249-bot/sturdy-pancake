@@ -16,6 +16,8 @@ public class LobbyFrame extends JFrame {
     private final JButton btnJoin;
     private final JButton btnCreate;
     private final JButton btnRefresh;
+    private final JButton btnHistory;
+    private final JButton btnStatistic;
     private List<Room> currentRooms;
 
     public LobbyFrame(CaroClient client) {
@@ -64,13 +66,17 @@ public class LobbyFrame extends JFrame {
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 4));
         btnPanel.setBackground(new Color(18, 18, 28));
 
-        btnCreate  = makeBtn("➕ Tạo Phòng", new Color(0, 130, 70));
-        btnJoin    = makeBtn("▶ Vào Phòng", new Color(0, 100, 170));
-        btnRefresh = makeBtn("🔄 Làm Mới", new Color(80, 80, 100));
+        btnCreate    = makeBtn("➕ Tạo Phòng", new Color(0,130,70));
+        btnJoin      = makeBtn("▶ Vào Phòng", new Color(0,100,170));
+        btnRefresh   = makeBtn("🔄 Làm Mới", new Color(80,80,100));
+        btnHistory   = makeBtn("📜 Lịch Sử", new Color(160,120,0));
+        btnStatistic = makeBtn("🏆 Xếp Hạng", new Color(180,90,0));
 
         btnPanel.add(btnCreate);
         btnPanel.add(btnJoin);
         btnPanel.add(btnRefresh);
+        btnPanel.add(btnHistory);
+        btnPanel.add(btnStatistic);
         bottom.add(btnPanel, BorderLayout.NORTH);
 
         lblStatus = new JLabel(" ", JLabel.CENTER);
@@ -84,6 +90,13 @@ public class LobbyFrame extends JFrame {
         btnCreate.addActionListener(e -> doCreateRoom());
         btnJoin.addActionListener(e -> doJoinRoom());
         btnRefresh.addActionListener(e -> client.requestLobbyUpdate());
+        btnHistory.addActionListener(e -> {
+            new HistoryFrame(client.getUsername()).setVisible(true);
+        });
+
+        btnStatistic.addActionListener(e -> {
+            new StatisticFrame().setVisible(true);
+        });
 
         roomTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -139,6 +152,8 @@ public class LobbyFrame extends JFrame {
         btnCreate.setEnabled(enabled);
         btnJoin.setEnabled(enabled);
         btnRefresh.setEnabled(enabled);
+        btnHistory.setEnabled(enabled);
+        btnStatistic.setEnabled(enabled);
     }
 
     private JButton makeBtn(String text, Color bg) {
@@ -149,7 +164,7 @@ public class LobbyFrame extends JFrame {
         btn.setBorderPainted(false);
         btn.setFont(new Font("Arial", Font.BOLD, 13));
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btn.setPreferredSize(new Dimension(150, 36));
+        btn.setPreferredSize(new Dimension(110, 36));
         return btn;
     }
 }

@@ -31,12 +31,28 @@ public class HistoryFrame extends JFrame {
         }
 
         JTable table = new JTable(model);
+        table.setFont(new Font("Arial", Font.PLAIN, 13));
+        table.setRowHeight(28);
+
+        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+        table.getTableHeader().setReorderingAllowed(false);
+
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setRowHeight(26);
         table.getTableHeader().setReorderingAllowed(false);
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        JLabel lbl = new JLabel("  Tổng " + history.size() + " trận gần nhất", JLabel.LEFT);
-        lbl.setBorder(BorderFactory.createEmptyBorder(4, 8, 4, 8));
-        add(lbl, BorderLayout.SOUTH);
+        JPanel bottom = new JPanel(new BorderLayout());
+
+        JLabel lbl = new JLabel("  Tổng " + history.size() + " trận gần nhất");
+        lbl.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
+
+        JButton btnClose = new JButton("Đóng");
+        btnClose.addActionListener(e -> dispose());
+
+        bottom.add(lbl, BorderLayout.WEST);
+        bottom.add(btnClose, BorderLayout.EAST);
+
+        add(bottom, BorderLayout.SOUTH);
     }
 }

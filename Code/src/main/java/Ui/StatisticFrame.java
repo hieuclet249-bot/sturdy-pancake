@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class StatisticFrame extends JFrame {
+public class  StatisticFrame extends JFrame {
     public StatisticFrame() {
         setTitle("Bảng Xếp Hạng");
         setSize(500, 400);
@@ -31,7 +31,20 @@ public class StatisticFrame extends JFrame {
         }
 
         JTable table = new JTable(model);
+        table.setFont(new Font("Arial", Font.PLAIN, 13));
+        table.setRowHeight(28);
+
+        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+        table.getTableHeader().setReorderingAllowed(false);
         table.setRowHeight(26);
         add(new JScrollPane(table), BorderLayout.CENTER);
+
+        JButton btnClose = new JButton("Đóng");
+        btnClose.addActionListener(e -> dispose());
+
+        JPanel p = new JPanel();
+        p.add(btnClose);
+
+        add(p, BorderLayout.SOUTH);
     }
 }
